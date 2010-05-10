@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Backdoor key</title>
+</head>
+<body>
+	<h1>Backdoor key</h1>
+	<form method="post" action="backdoorkey.php" target="_blank">
+		<table>
+			<tr><td>URL</td><td><input type="text" name="url" /></td></tr>
+			<tr><td>User</td><td><input type="text" name="user" /></td></tr>
+			<tr><td>Type</td><td><select name="link"><option value="">Default</option><option value="{%url}/index.php/backdoor/{%cmd}">Concrete5</option></select></td></tr>
+		</table>
+		<input type="submit" value="Login" />
+		<input type="checkbox" name="cmd" value="getLink" />Debug
+	</form>
+</body>
+</html>
