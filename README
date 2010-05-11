@@ -3,4 +3,9 @@
 A secure backdoor (client and server) for PHP.
 See http://www.jasny.net/articles/a-secure-backdoor-for-php
 
+CAUTION! Make sure you replace master.key/master.pub with your own
+private and public key.
+  openssl genrsa -out master.key 1024
+  openssl rsa -in master.key -pubout -out master.pub
+
 MIT licensed - http://www.jasny.net/mit-license/
