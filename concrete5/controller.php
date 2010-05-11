@@ -3,7 +3,7 @@
 defined('C5_EXECUTE') or die(_("Access Denied."));
 
 /**
- * Installation controller for backdoor package
+ * Installation controller for backdoor package.
  * 
  * @copyright  Copyright (c) 2010 Jasny BV. (http://www.jasny.net)
  * @license    http://www.jasny.net/mit-license/     MIT License
@@ -41,9 +41,6 @@ class BackdoorPackage extends Package
 	{
 		$pkg = parent::install();
 		                
-		$id = Loader::helper('validation/identifier');
-		$pkg->saveConfig('SECRET', $id->getString());
-		
 		mkdir(DIR_CONFIG_SITE . '/backdoor');
 		
 		Loader::model('single_page');

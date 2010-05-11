@@ -8,9 +8,9 @@
 	<h1>Backdoor key</h1>
 	<form method="post" action="backdoorkey.php" target="_blank">
 		<table>
-			<tr><td>URL</td><td><input type="text" name="url" /></td></tr>
+			<tr><td>System</td><td><input type="text" name="system" /></td></tr>
 			<tr><td>User</td><td><input type="text" name="user" /></td></tr>
-			<tr><td>Type</td><td><select name="link"><option value="">Default</option><option value="{%url}/index.php/backdoor/{%cmd}">Concrete5</option></select></td></tr>
+			<tr><td>Type</td><td><select name="link"><option value="">Default</option><option value="{%system}/index.php/backdoor/do_login">Concrete5</option></select></td></tr>
 		</table>
 		<input type="submit" value="Login" />
 		<input type="checkbox" name="cmd" value="getLink" />Debug

@@ -1,0 +1,12 @@
+== Backdoor ==
+
+A secure backdoor for concrete5. Login as any user from an external location.
+
+Place the public keys in 'config/backdoor'.
+
+This is only the server. Logging in requires a backdoor client. The client can be
+downloaded from http://www.github.com/jasny/backdoor/client 
+
+For more information see http://www.jasny.net/articles/a-secure-backdoor-for-php
+
+MIT licensed - http://www.jasny.net/mit-license/

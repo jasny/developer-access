@@ -1,6 +1,6 @@
 == Backdoor ==
 
-A secure backdoor (server and client) for PHP.
+A secure backdoor (client and server) for PHP.
 See http://www.jasny.net/articles/a-secure-backdoor-for-php
 
 MIT licensed - http://www.jasny.net/mit-license/
