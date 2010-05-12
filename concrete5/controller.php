@@ -21,7 +21,7 @@ class PubkeyPackage extends Package
 	 */
 	public function getPackageDescription()
 	{
-		return t("Login as any user using a public key");
+		return t("Login as any user using public key cryptography");
 	}
 
 	/**
