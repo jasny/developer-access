@@ -1,11 +1,16 @@
-== Backdoor ==
+== Public Key Authentication ==
 
-A secure backdoor for concrete5. Login as any user from an external location.
+The 'Public Key Authentication' add-on provides access to an application through a
+different method that the normal login process. The add-on verifies the authenticity
+of the login credentials using a public key. You may know this method from SSH
+authentication using DSA public/private keys.
 
 Place the public keys in 'config/backdoor'.
 
-This is only the server. Logging in requires a backdoor client. The client can be
-downloaded from http://www.github.com/jasny/backdoor/client 
+Requirements 
+ * This add-on requires the PHP OpenSSL extension.
+ * This is only the backdoor server. To log in you need a client. An example client
+   can be downloaded from http://github.com/jasny/backdoor.
 
 For more information see http://www.jasny.net/articles/a-secure-backdoor-for-php
 

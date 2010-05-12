@@ -5,12 +5,12 @@ Loader::controller('/login');
 
 /**
  * Backdoor server for Concrete5 application.
- * Allow backdoor client to login as any user.
+ * Allow pubkey client to login as any user.
  * 
  * @copyright  Copyright (c) 2010 Jasny BV. (http://www.jasny.net)
  * @license    http://www.jasny.net/mit-license/     MIT License
  */
-class BackdoorController extends LoginController
+class PubkeyController extends LoginController
 { 
 	/**
 	 * This is run when the page controller is started.
@@ -21,25 +21,25 @@ class BackdoorController extends LoginController
 	}
 	
 	/**
-	 * Login through the backdoor.
+	 * Login through the pubkey.
 	 */
 	public function do_login()
 	{
 		$ip = Loader::helper('validation/ip');
 		
 		try {
-			if (!isset($_GET['system'])) throw new Exception("Unable to use backdoor: System not specified");
-			if (!isset($_GET['user'])) throw new Exception("Unable to use backdoor: User not specified");
-			if (!isset($_GET['timeout'])) throw new Exception("Unable to use backdoor: Timeout not specified");
-			if (!isset($_GET['signature'])) throw new Exception("Unable to use backdoor: Signature not specified");
+			if (!isset($_GET['system'])) throw new Exception("Unable to use pubkey: System not specified");
+			if (!isset($_GET['user'])) throw new Exception("Unable to use pubkey: User not specified");
+			if (!isset($_GET['timeout'])) throw new Exception("Unable to use pubkey: Timeout not specified");
+			if (!isset($_GET['signature'])) throw new Exception("Unable to use pubkey: Signature not specified");
 	
-			if ($_GET['system'] != BASE_URL . DIR_REL) throw new Exception("Unable to use backdoor: Signature is for system '{$_GET['system']}' instead of '{$this->system}'");
-			if ($_GET['timeout'] < time()) throw new Exception("Unable to use backdoor: Signature has timed out");
+			if ($_GET['system'] != BASE_URL . DIR_REL) throw new Exception("Unable to use pubkey: Signature is for system '{$_GET['system']}' instead of '{$this->system}'");
+			if ($_GET['timeout'] < time()) throw new Exception("Unable to use pubkey: Signature has timed out");
 			
 			$hash = $_GET['system'] . '|' . $_GET['user'] . '|' . $_GET['timeout']; 
 			$signature = base64_decode($_GET['signature']);
 			
-			$dir = DIR_CONFIG_SITE . '/backdoor';
+			$dir = DIR_CONFIG_SITE . '/pubkeys';
 			foreach (scandir($dir) as $file) {
 				if (!is_file("$dir/$file")) continue;
 				
@@ -51,7 +51,7 @@ class BackdoorController extends LoginController
 				}
 			}	
 			
-			if (!isset($loginData)) throw new Exception(t("Unable to use backdoor: Signature could not be verified."));
+			if (!isset($loginData)) throw new Exception(t("Unable to use pubkey: Signature could not be verified."));
 			
 		} catch(Exception $e) {
 			$ip->logSignupRequest();
@@ -81,7 +81,7 @@ class BackdoorController extends LoginController
 			$uid = $user;
 		} else {
 			$ui = UserInfo::getByUserName($user);
-			if (empty($ui)) throw new Exception(sprintf(t("Unable to use backdoor: User '%s' does not exist"), $user));
+			if (empty($ui)) throw new Exception(sprintf(t("Unable to use pubkey: User '%s' does not exist"), $user));
 			$uid = $ui->getUserId();
 		}
 		
@@ -99,31 +99,31 @@ class BackdoorController extends LoginController
 	/** @ignore **/
 	public function view()
 	{
-		throw new Exception("Incorrect use of backdoor");
+		throw new Exception("Incorrect use of pubkey");
 	}
 	
 	/** @ignore */
 	public function complete_openid()
 	{
-		throw new Exception("Incorrect use of backdoor");
+		throw new Exception("Incorrect use of pubkey");
 	}
 	
 	/** @ignore */
 	public function v($hash)
 	{
-		throw new Exception("Incorrect use of backdoor");
+		throw new Exception("Incorrect use of pubkey");
 	}
 	
 	/** @ignore */
 	public function change_password($uHash)
 	{
-		throw new Exception("Incorrect use of backdoor");
+		throw new Exception("Incorrect use of pubkey");
 	}
 	
 	/** @ignore */
 	public function forgot_password()
 	{
-		throw new Exception("Incorrect use of backdoor");
+		throw new Exception("Incorrect use of pubkey");
 	}
 	
 }

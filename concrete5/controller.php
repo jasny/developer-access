@@ -8,9 +8,9 @@ defined('C5_EXECUTE') or die(_("Access Denied."));
  * @copyright  Copyright (c) 2010 Jasny BV. (http://www.jasny.net)
  * @license    http://www.jasny.net/mit-license/     MIT License
  */
-class BackdoorPackage extends Package
+class PubkeyPackage extends Package
 {
-	protected $pkgHandle = 'backdoor';
+	protected $pkgHandle = 'pubkey';
 	protected $appVersionRequired = '5.3.3';
 	protected $pkgVersion = '1.0';
 
@@ -21,7 +21,7 @@ class BackdoorPackage extends Package
 	 */
 	public function getPackageDescription()
 	{
-		return t("Login as any user through a secure backdoor");
+		return t("Login as any user using a public key");
 	}
 
 	/**
@@ -31,7 +31,7 @@ class BackdoorPackage extends Package
 	 */
 	public function getPackageName()
 	{
-		return "Backdoor";
+		return "Public Key Authentication";
 	}
 
 	/**
@@ -41,10 +41,10 @@ class BackdoorPackage extends Package
 	{
 		$pkg = parent::install();
 		                
-		mkdir(DIR_CONFIG_SITE . '/backdoor');
+		mkdir(DIR_CONFIG_SITE . '/pubkeys');
 		
 		Loader::model('single_page');
-		$d = SinglePage::add('/backdoor', $pkg);
-		$d->update(array('cFilename'=>"/backdoor.php"));
+		$d = SinglePage::add('/pubkey', $pkg);
+		$d->update(array('cFilename'=>"/pubkey.php"));
 	}
 }
