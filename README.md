@@ -14,7 +14,7 @@ A backdoor provides access to an application bypassing the normal authentication
 
 ## Why do you need a backdoor?
 
-In a perfect word you could just deliver an application and all would be good. However in the real world there are unforeseen issues which need to be solved. This means that you as a developer will need access to the application. To reproduce the problem, you usually want to run the application logged in as the user that spotted the issue.
+In a perfect world you could just deliver an application and all would be good. However in the real world there are unforeseen issues which need to be solved. This means that you as a developer will need access to the application. To reproduce the problem, you usually want to run the application logged in as the user that spotted the issue.
 
 Another use of the backdoor is in a situation where you want to allow a user, that has already been authenticated, to bypassing further authentication. For example if you have a (web hosting) control panel where the user is already logged in, you can allow him to directly access the dashboard of the application without have to enter his password again. This requires a backdoor, since you don’t know his (unencrypted) password.
 
@@ -22,7 +22,7 @@ Another use of the backdoor is in a situation where you want to allow a user, th
 
 The most simple solution is to use a backdoor password. This password will work for every user. A variation on this, is to have a superuser account, that is allowed to switch to any user on the system.
 
-This solution is fine if you’re the only developer working on these applications. However in a professional environment this solution won’t do. With this method is easy to give somebody super privileges, but hard to take them away. This requires changing the backdoor password. Which is a tedious job if you’re managing any serious number of applications.
+This solution is fine if you’re the only developer working on these applications. However in a professional environment this solution won’t do. With this method it is easy to give somebody super privileges, but hard to take them away. This requires changing the backdoor password. Which is a tedious job if you’re managing any serious number of applications.
 
 ## The secure way
 
@@ -32,7 +32,7 @@ It is easier if there is a project management system where you and other develop
 
 The best known method for logging into a system, is the use of private/public (DSA) keys with SSH. The SSH client signs the request with the private key. The SSH server has the public key in the authorized_key file. It verifies the credentials using the public keys and grands access on success.
 
-We can use the same method with PHP using the OpenSLL extension. We’ll let the client (project management system) sign the username and system name (URL) using openssl\_sign. This signature is verified on the server (customer application) using openssl\_verify. To unsure the login URL can’t be reused later, we’ll throw in a 5 second timeout.
+We can use the same method with PHP using the OpenSSL extension. We’ll let the client (project management system) sign the username and system name (URL) using openssl\_sign. This signature is verified on the server (customer application) using openssl\_verify. To unsure the login URL can’t be reused later, we’ll throw in a 5 second timeout.
 
 ## Generating the keys
 
