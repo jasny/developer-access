@@ -1,7 +1,8 @@
-# Private/public key authentication in PHP
+# Developer access in PHP application
 
-CAUTION! Make sure you replace master.key/master.pub with your own
-private and public key.
+Private/public key authentication in PHP, granting you as developer access to the application.
+
+CAUTION! Make sure you replace master.key/master.pub with your own private and public key.
 
     openssl genrsa -out master.key 1024
     openssl rsa -in master.key -pubout -out master.pub
